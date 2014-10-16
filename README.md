@@ -18,3 +18,12 @@ Download this repository and run:
     $ packer build template.json
 
 You will see packer run an create the Ghiro appliance.
+
+Setting a proxy
+---------------
+
+If you need to set a proxy to donwload installation packages from internet, set
+the following line in http/preseed.cfg:
+
+    d-i mirror/http/proxy string http://your_proxy_ip:your_proxy_port
+    d-i mirror/https/proxy string https://your_proxy_ip:your_proxy_port
