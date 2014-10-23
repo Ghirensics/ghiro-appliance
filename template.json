@@ -3,14 +3,15 @@
     "iso_url": "ubuntu-14.04.1-server-i386.iso",
     "iso_md5": "3aa14ca13d52df070870d39306f4a4eb",
     "version": "1.0.2",
-    "name": "ubuntu-14.04-amd64",
+    "name": "ubuntu-14.04-i386",
     "ssh_user": "ghiro",
-    "ssh_pass": "ghiromanager"
+    "ssh_pass": "ghiromanager",
+    "hostname": "ghiroappliance"
   },
   "provisioners": [
     {
       "type": "shell",
-      "execute_command": "echo '{{user `ssh_pass`}}'|sudo -S sh '{{.Path}}'",
+      "execute_command": "echo '{{user `ssh_pass`}}'|sudo -S bash '{{.Path}}'",
       "override": {
         "virtualbox-iso": {
           "scripts": [
@@ -29,10 +30,10 @@
       "type": "vagrant",
       "override": {
         "virtualbox": {
-          "output": "ubuntu-14-04-x64-virtualbox.box"
+          "output": "ghiro_appliance_'{{user `version`}}'_virtualbox.box"
         },
         "vmware": {
-          "output": "ubuntu-14-04-x64-vmware.box"
+          "output": "ghiro_appliance_'{{user `version`}}'_vmware.box"
         }
       }
     }
@@ -66,7 +67,7 @@
       ],
       "boot_wait": "10s",
       "disk_size": 40960,
-      "guest_os_type": "Ubuntu_64",
+      "guest_os_type": "Ubuntu",
       "guest_additions_mode": "disable",
       "http_directory": "http",
       "iso_checksum": "{{user `iso_md5`}}",
