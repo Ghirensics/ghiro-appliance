@@ -26,17 +26,6 @@
     }
   ],
   "post-processors": [
-    {
-      "type": "vagrant",
-      "override": {
-        "virtualbox": {
-          "output": "ghiro_appliance_'{{user `version`}}'_virtualbox.box"
-        },
-        "vmware": {
-          "output": "ghiro_appliance_'{{user `version`}}'_vmware.box"
-        }
-      }
-    }
   ],
   "builders": [
     {
