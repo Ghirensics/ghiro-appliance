@@ -28,4 +28,4 @@ pip install -r requirements.txt
 python manage.py syncdb --noinput
 
 # Create super user.
-echo "from django.contrib.auth.models import User; User.objects.create_superuser('ghiro', 'yourmail@example.com', 'ghiromanager')" | python manage.py shell
+echo "from users.models import Profile; Profile.objects.create_superuser('ghiro', 'yourmail@example.com', 'ghiromanager')" | python manage.py shell
