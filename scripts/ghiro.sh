@@ -34,10 +34,10 @@ echo "from users.models import Profile; Profile.objects.create_superuser('ghiro'
 apt-get install -y apache2 libapache2-mod-wsgi
 
 # Remove default virtualhost.
-a2dissite default
+a2dissite 000-default
 
 # Configure mod_wsgi and default virtual host.
-cat <<EOF > /etc/apache2/sites-available/ghiro
+cat <<EOF > /etc/apache2/sites-available/ghiro.conf
     <VirtualHost *:80>
         ServerAdmin webmaster@localhost
         WSGIProcessGroup ghiro
