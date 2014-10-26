@@ -162,7 +162,7 @@ EOF
 service ghiro start
 
 # Create Ghiro issue.
-cat <<EOF > /usr/local/bin/ghirobanner
+cat <<EOF > /etc/network/if-up.d/ghirobanner
 #!/bin/sh
 
 IP=`/sbin/ifconfig | grep "inet addr" | grep -v "127.0.0.1" | awk '{ print $2 }' | awk -F: '{ print $2 }'`
@@ -180,4 +180,4 @@ Default credentials
 
 Remember to change the password at your first access.
 EOF
-chmod +x /usr/local/bin/ghirobanner
+chmod +x /etc/network/if-up.d/ghirobanner
