@@ -32,7 +32,7 @@
     {
       "type": "virtualbox-iso",
       "vm_name": "{{user `vm_name`}}",
-      "format": "ovf",
+      "format": "ova",
       "export_opts": ["--vsys","0",
                            "--product","Ghiro",
                            "--producturl", "http://getghiro.org",
@@ -86,6 +86,7 @@
       ],
        "vboxmanage_post": [
         ["modifyvm", "{{.Name}}", "--nic1", "bridged"],
+        ["modifyvm", "{{.Name}}", "--bridgeadapter1", "eth0"],
         [ "modifyvm", "{{.Name}}", "--memory", "1024" ]
       ]
     }
