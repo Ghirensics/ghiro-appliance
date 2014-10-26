@@ -160,3 +160,24 @@ EOF
 
 # Start ghiro service.
 service ghiro start
+
+# Create Ghiro issue.
+cat <<EOF > /usr/local/bin/ghirobanner
+#!/bin/sh
+
+IP=`/sbin/ifconfig | grep "inet addr" | grep -v "127.0.0.1" | awk '{ print $2 }' | awk -F: '{ print $2 }'`
+echo $IP
+cat <<EOF > /etc/issue
+Welcome to Ghiro Appliance!
+---------------------------
+
+Appliance IP address is: $IP
+To start using Ghiro point your browser to http://$IP
+
+Default credentials
+  username: ghiro
+  password: ghiromanager
+
+Remember to change the password at your first access.
+EOF
+chmod +x /usr/local/bin/ghirobanner
