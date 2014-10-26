@@ -10,6 +10,9 @@ debconf-set-selections <<< 'mysql-server mysql-server/root_password_again passwo
 # Setup Mysql.
 apt-get install -y mysql-server
 
+# Create ghiro db.
+mysqladmin --defaults-extra-file=/etc/mysql/debian.cnf create ghiro
+
 # Setup python stuff.
 apt-get install -y python-pip build-essential python-dev python-gi
 apt-get install -y libgexiv2-2 gir1.2-gexiv2-0.10
