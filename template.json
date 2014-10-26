@@ -2,11 +2,12 @@
   "variables": {
     "iso_url": "ubuntu-14.04.1-server-i386.iso",
     "iso_md5": "3aa14ca13d52df070870d39306f4a4eb",
-    "version": "1.0.2",
+    "version": "0.2-1",
     "name": "ubuntu-14.04-i386",
     "ssh_user": "ghiro",
     "ssh_pass": "ghiromanager",
-    "hostname": "ghiroappliance"
+    "hostname": "ghiroappliance",
+    "vm_name": "Ghiro Appliance 0.2-1"
   },
   "provisioners": [
     {
@@ -30,6 +31,16 @@
   "builders": [
     {
       "type": "virtualbox-iso",
+      "vm_name": "{{user `vm_name`}}",
+      "format": "ovf",
+      "export_opts": ["--vsys","0",
+                           "--product","Ghiro",
+                           "--producturl", "http://getghiro.org",
+                           "--vendor", "Ghirensics",
+                           "--vendorurl","http://getghiro.org",
+                           "--version", "{{user `version`}}",
+                           "--description", "Ghiro Appliance. Default credentials username: ghiro password: ghiromanager Remember to change the password at your first access."
+                           ],
       "boot_command": [
         "<esc><wait>",
         "<esc><wait>",
@@ -47,7 +58,7 @@
         " keyboard-configuration/layout=USA<wait>",
         " keyboard-configuration/variant=USA<wait>",
         " locale=en_US<wait>",
-        " netcfg/get_hostname={{.Name}}<wait>",
+        " netcfg/get_hostname={{user `hostname`}}<wait>",
         " netcfg/get_domain=localdomain<wait>",
         " noapic<wait>",
         " preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg<wait>",
@@ -69,8 +80,13 @@
       "shutdown_command": "echo 'shutdown -P now' > /tmp/shutdown.sh; echo '{{user `ssh_pass`}}'|sudo -S sh '/tmp/shutdown.sh'",
       "hard_drive_interface": "sata",
       "vboxmanage": [
-        [ "modifyvm", "{{.Name}}", "--memory", "1024" ],
-        [ "modifyvm", "{{.Name}}", "--cpus", "1" ]
+        [ "modifyvm", "{{.Name}}", "--memory", "512" ],
+        [ "modifyvm", "{{.Name}}", "--cpus", "1" ],
+        [ "modifyvm", "{{.Name}}", "--vram", "16" ]
+      ],
+       "vboxmanage_post": [
+        ["modifyvm", "{{.Name}}", "--nic1", "bridged"],
+        [ "modifyvm", "{{.Name}}", "--memory", "1024" ]
       ]
     }
   ]
