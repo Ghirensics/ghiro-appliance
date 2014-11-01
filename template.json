@@ -1,6 +1,6 @@
 {
   "variables": {
-    "iso_url": "ubuntu-14.04.1-server-i386.iso",
+    "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.1-server-i386.iso",
     "iso_md5": "3aa14ca13d52df070870d39306f4a4eb",
     "version": "0.2-1",
     "name": "ubuntu-14.04-i386",
