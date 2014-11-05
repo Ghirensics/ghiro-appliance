@@ -13,7 +13,7 @@ You can download latest stable appliance release on Ghiro website: http://getghi
 Gettting started
 ----------------
 
-Download and install Packer from http://packer.io 
+Download and install Packer from http://packer.io
 You must have VirtualBox installed and access to internet (to download Ubuntu's
 packages).
 
