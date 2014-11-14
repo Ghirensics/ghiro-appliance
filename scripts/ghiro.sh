@@ -152,8 +152,8 @@ description     "Ghiro"
 
 start on started mysql
 stop on shutdown
+chdir /var/www/ghiro/
 script
-    chdir /var/www/ghiro/
     exec /usr/bin/python manage.py process
 end script
 EOF
