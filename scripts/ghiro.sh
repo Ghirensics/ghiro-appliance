@@ -172,18 +172,18 @@ cat <<EOF > /etc/network/if-up.d/ghirobanner
 #!/bin/sh
 
 IP=`/sbin/ifconfig | grep "inet addr" | grep -v "127.0.0.1" | awk '{ print $2 }' | awk -F: '{ print $2 }'`
-echo $IP
-cat <<EOF > /etc/issue
+cat <<FOO > /etc/issue
 Welcome to Ghiro Appliance!
 ---------------------------
 
-Appliance IP address is: $IP
-To start using Ghiro point your browser to http://$IP
+Appliance IP address is: \$IP
+To start using Ghiro point your browser to http://\$IP
 
 Default credentials
   username: ghiro
   password: ghiromanager
 
 Remember to change the password at your first access.
+FOO
 EOF
 chmod +x /etc/network/if-up.d/ghirobanner
