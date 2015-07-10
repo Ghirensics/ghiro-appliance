@@ -186,4 +186,9 @@ Default credentials:
 *** Remember to change the password at your first access. ***
 FOO
 EOF
+
+cat <<FOO > /etc/issue.net
+Ghiro Appliance
+FOO
+
 chmod +x /etc/network/if-up.d/ghirobanner
