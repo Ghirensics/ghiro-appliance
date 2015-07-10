@@ -179,11 +179,11 @@ Welcome to Ghiro Appliance!
 Appliance IP address is: \$IP
 To start using Ghiro point your browser to http://\$IP
 
-Default credentials
+Default credentials:
   username: ghiro
   password: ghiromanager
 
-Remember to change the password at your first access.
+*** Remember to change the password at your first access. ***
 FOO
 EOF
 chmod +x /etc/network/if-up.d/ghirobanner
