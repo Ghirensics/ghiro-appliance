@@ -31,6 +31,7 @@ ln -s /usr/bin/wkhtmltopdf.sh /usr/local/bin/wkhtmltopdf
 # Checkout ghiro from git.
 cd /var/www
 git clone https://github.com/Ghirensics/ghiro.git
+git checkout Ghiro_Appliance_0.2 
 cd ghiro
 
 # Configure ghiro
