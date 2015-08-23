@@ -173,8 +173,12 @@ cat <<EOF > /etc/network/if-up.d/ghirobanner
 
 IP=`/sbin/ifconfig | grep "inet addr" | grep -v "127.0.0.1" | awk '{ print $2 }' | awk -F: '{ print $2 }'`
 cat <<FOO > /etc/issue
-Welcome to Ghiro Appliance!
----------------------------
+###############################
+# Welcome to Ghiro Appliance! #
+###############################
+
+HOW TO START
+------------
 
 Appliance IP address is: \$IP
 To start using Ghiro point your browser to http://\$IP
