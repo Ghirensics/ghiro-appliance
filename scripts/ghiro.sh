@@ -31,6 +31,7 @@ ln -s /usr/bin/wkhtmltopdf.sh /usr/local/bin/wkhtmltopdf
 # Checkout ghiro from git.
 cd /var/www
 git clone https://github.com/Ghirensics/ghiro.git
+git checkout Ghiro_Appliance_0.2 
 cd ghiro
 
 # Configure ghiro
@@ -171,7 +172,7 @@ service ghiro start
 cat <<EOF > /etc/network/if-up.d/ghirobanner
 #!/bin/sh
 
-IP=`/sbin/ifconfig | grep "inet addr" | grep -v "127.0.0.1" | awk '{ print $2 }' | awk -F: '{ print $2 }'`
+IP=\`/sbin/ifconfig | grep "inet addr" | grep -v "127.0.0.1" | awk '{ print $2 }' | awk -F: '{ print $2 }'\`
 cat <<FOO > /etc/issue
 ###############################
 # Welcome to Ghiro Appliance! #
