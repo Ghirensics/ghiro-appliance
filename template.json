@@ -1,7 +1,7 @@
 {
   "variables": {
-    "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.1-server-i386.iso",
-    "iso_md5": "3aa14ca13d52df070870d39306f4a4eb",
+    "iso_url": "http://releases.ubuntu.com/14.04/ubuntu-14.04.3-server-i386.iso",
+    "iso_md5": "352009d5b44f0e97c9558919f0147c0c",
     "version": "0.2-1",
     "name": "ubuntu-14.04-i386",
     "ssh_user": "ghiro",
