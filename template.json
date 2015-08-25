@@ -80,7 +80,7 @@
       "shutdown_command": "echo 'shutdown -P now' > /tmp/shutdown.sh; echo '{{user `ssh_pass`}}'|sudo -S sh '/tmp/shutdown.sh'",
       "hard_drive_interface": "sata",
       "vboxmanage": [
-        [ "modifyvm", "{{.Name}}", "--memory", "512" ],
+        [ "modifyvm", "{{.Name}}", "--memory", "1024" ],
         [ "modifyvm", "{{.Name}}", "--cpus", "1" ],
         [ "modifyvm", "{{.Name}}", "--vram", "16" ]
       ],
