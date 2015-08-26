@@ -10,8 +10,8 @@ script to have your own customized appliance.
 
 You can download latest stable appliance release on Ghiro website: http://getghiro.org
 
-Gettting started
-----------------
+Getting started
+---------------
 
 Download and install Packer from http://packer.io
 You must have VirtualBox installed and access to internet (to download Ubuntu's
@@ -42,7 +42,7 @@ By default the appliance is created with the minimum hardware requirements:
  * 1 CPU
  * 1 Gb RAM
 
-Giving more RAM and more CPUs is reccomended if possible. More CPUs you can
+Giving more RAM and more CPUs is recommended if possible. More CPUs you can
 assign faster image processing you get.
 
 Configure networking
