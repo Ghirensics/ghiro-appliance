@@ -12,3 +12,9 @@ apt-get -y upgrade
 
 # Basic stuff.
 apt-get install -y vim git zip unzip curl wget
+
+# Fix for Ubuntu/Virtualbox shit.
+# Starting from 14.04.3 in virtualbox we got a black screen each reboot.
+# This is used to re-init the video.
+sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="quiet”/GRUB_CMDLINE_LINUX_DEFAULT=“text”/g' /etc/default/grub
+update-grub
