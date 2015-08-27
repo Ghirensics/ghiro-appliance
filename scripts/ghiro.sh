@@ -32,7 +32,6 @@ ln -s /usr/bin/wkhtmltopdf.sh /usr/local/bin/wkhtmltopdf
 cd /var/www
 git clone https://github.com/Ghirensics/ghiro.git
 cd ghiro
-git checkout tags/ghiro-0.2.1
 
 # Configure ghiro
 cat <<EOF > ghiro/local_settings.py
