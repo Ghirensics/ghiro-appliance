@@ -20,7 +20,7 @@ The first time you have to properly configure the network interface.
 Select the virtual networking you like (for example
 bridged or NAT); by default the appliance is configured in bridged mode.
 By default, Ghiro appliance will get an IP address using DHCP and show it in
-the boot screen.
+the boot screen, just put it in a browser.
 
 If you need to manually configure your IP address: login in, and configure the
 networking card with your desired IP, for example to
@@ -43,7 +43,7 @@ For extra security, remember to change the password at your first access.
 Now you can start analyzing images! Go in the "Cases" panel, create your first
 case, and add your images with the add button.
 For usage help please refer to the documentation at:
-http://www.getghiro.org/docs/latest/usage/index.html
+http://docs.getghiro.org/en/latest/usage/appliance.html
 
 If you need to access remotely to the appliance you can use SSH.
 The appliance is shipped with a default disk of 50GB, if is not enough you can
