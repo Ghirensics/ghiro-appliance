@@ -22,6 +22,9 @@ apt-get install -y libtiff4-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms
 # Install Apache.
 apt-get install -y apache2 libapache2-mod-wsgi
 
+# Deps for scipy.
+apt-get install -y libblas-dev liblapack-dev libatlas-base-dev gfortran python-dev
+
 # Install and configure wkhtmltopdf
 apt-get install -y wkhtmltopdf xvfb
 printf '#!/bin/bash\nxvfb-run --server-args="-screen 0, 1024x768x24" /usr/bin/wkhtmltopdf $*' > /usr/bin/wkhtmltopdf.sh
