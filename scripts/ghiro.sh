@@ -31,6 +31,9 @@ printf '#!/bin/bash\nxvfb-run --server-args="-screen 0, 1024x768x24" /usr/bin/wk
 chmod a+x /usr/bin/wkhtmltopdf.sh
 ln -s /usr/bin/wkhtmltopdf.sh /usr/local/bin/wkhtmltopdf
 
+# Upgrade pip
+pip install --upgrade pip
+
 # Checkout ghiro from git.
 cd /var/www
 git clone https://github.com/Ghirensics/ghiro.git
