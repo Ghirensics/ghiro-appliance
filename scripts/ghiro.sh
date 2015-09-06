@@ -112,6 +112,46 @@ ALLOWED_HOSTS = ["*"]
 # Automatically checks once a day for updates.
 # Set it to False to disable update check.
 UPDATE_CHECK = True
+
+# Auto upload is used to upload ana analyze files from a directory, monitoring
+# it for changes.
+# It is usually used to upload images via a shared folder or FTP.
+# It should be an absolute path.
+# Example: "/home/ghiro_share"
+AUTO_UPLOAD_DIR = None
+# Delete a file after upload and submission.
+# The default behaviour is True.
+# WARNING: It is not suggested to set it to False, because you will re-submit images
+# each startup.
+AUTO_UPLOAD_DEL_ORIGINAL = True
+# Clean up AUTO_UPLOAD_DIR when startup.
+# The default behaviour is True.
+# WARNING: It is not suggested to set it to False, because you will re-submit images
+# each startup.
+AUTO_UPLOAD_STARTUP_CLEANUP = True
+
+# Auditing.
+# Logs all user actions.
+AUDITING_ENABLED = True
+
+# Log directory. Here is where Ghiro puts all logs.
+LOG_DIR = "/tmp/log/"
+# File name used for image processor log.
+LOG_PROCESSING_NAME = "processing.log"
+# Processor log maximum size.
+LOG_PROCESSING_SIZE = 1024*1024*16 # 16 megabytes
+# How many copies of processor log keep while rotating logs.
+LOG_PROCESSING_NUM = 3 # keep 3 copies
+# File name used for audit log.
+LOG_AUDIT_NAME = "audit.log"
+# Audit log maximum size.
+LOG_AUDIT_SIZE = 1024*1024*16 # 16 megabytes
+# How many copies of audit log keep while rotating logs.
+LOG_AUDIT_NUM = 3 # keep 3 copies
+
+# Enable JSON export to file for analysis results.
+# This will create a JSON file for each analysis.
+JSON_EXPORT = False
 EOF
 
 # Setup python requirements using pypi.
