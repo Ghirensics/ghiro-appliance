@@ -118,7 +118,7 @@ UPDATE_CHECK = True
 # It is usually used to upload images via a shared folder or FTP.
 # It should be an absolute path.
 # Example: "/home/ghiro_share"
-AUTO_UPLOAD_DIR = None
+AUTO_UPLOAD_DIR = "/tmp/ghiroshare"
 # Delete a file after upload and submission.
 # The default behaviour is True.
 # WARNING: It is not suggested to set it to False, because you will re-submit images
