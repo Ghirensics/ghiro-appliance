@@ -242,3 +242,44 @@ Ghiro Appliance
 FOO
 
 chmod +x /etc/network/if-up.d/ghirobanner
+
+#
+# FTP Server.
+#
+
+# Setup FTP server.
+apt-get install -y --no-install-recommends vsftpd
+
+# Prepare.
+mkdir -p /var/run/vsftpd/empty \
+&& mkdir -p /etc/vsftpd \
+&& mkdir -p /var/ftp \
+&& mv /etc/vsftpd.conf /etc/vsftpd.orig
+
+# Configure.
+cat <<EOF > /etc/vsftpd.conf
+listen=YES
+anonymous_enable=YES
+dirmessage_enable=YES
+use_localtime=YES
+connect_from_port_20=YES
+secure_chroot_dir=/var/run/vsftpd/empty
+write_enable=NO
+seccomp_sandbox=NO
+xferlog_std_format=NO
+log_ftp_protocol=YES
+anon_root=/tmp/ghiroshare
+pasv_max_port=13000
+pasv_min_port=12000
+max_per_ip=200
+max_login_fails=200
+max_clients=200
+anon_max_rate=0
+ftpd_banner="Welcome to Ghiro Appliance FTP"
+EOF
+
+# Reboot.
+service vsftpd restart
+
+
+
