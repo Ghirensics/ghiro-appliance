@@ -167,6 +167,10 @@ python manage.py syncdb --noinput
 # Create super user.
 echo "from users.models import Profile; Profile.objects.create_superuser('ghiro', 'yourmail@example.com', 'ghiromanager')" | python manage.py shell
 
+#
+# Apache service.
+#
+
 # Remove default virtualhost.
 a2dissite 000-default
 
@@ -198,6 +202,10 @@ a2ensite ghiro
 # Restart Apache.
 service apache2 restart
 
+#
+# Ghiro service.
+#
+
 # Adding processor init script.
 cat <<EOF > /etc/init/ghiro.conf
 description     "Ghiro"
@@ -212,6 +220,10 @@ EOF
 
 # Start ghiro service.
 service ghiro start
+
+#
+# Appliance login banner.
+#
 
 # Create Ghiro issue.
 cat <<EOF > /etc/network/if-up.d/ghirobanner
@@ -280,6 +292,14 @@ EOF
 
 # Reboot.
 service vsftpd restart
+
+#
+# Samba server.
+#
+
+# Setup.
+apt-get install -yq samba
+
 
 
 
