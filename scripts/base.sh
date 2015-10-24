@@ -11,7 +11,7 @@ apt-get update
 apt-get -y upgrade
 
 # Basic stuff.
-apt-get install -y vim git zip unzip curl wget screen
+apt-get install -y vim git zip unzip curl wget screen htop
 
 # Fix for Ubuntu/Virtualbox shit.
 # Starting from 14.04.3 in virtualbox we got a black screen each reboot.
