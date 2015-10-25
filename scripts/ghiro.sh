@@ -226,7 +226,9 @@ start on started mysql
 stop on shutdown
 chdir /var/www/ghiro/
 script
-    exec /usr/bin/python manage.py process
+    exec start-stop-daemon --start -u ghirosrv -c ghirosrv \
+        -d /var/www/ghiro \
+        --exec /usr/bin/python  manage.py process
 end script
 EOF
 
