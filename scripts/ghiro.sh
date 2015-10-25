@@ -312,6 +312,35 @@ service vsftpd restart
 # Setup.
 apt-get install -yq samba
 
+# Create user with no password.
+smbpasswd -an ghirosrv
+
+# Configure.
+cat <<EOF > /etc/samba/smb.conf
+[global]
+    workgroup = WORKGROUP
+    server string = Ghiro Appliance share
+    map to guest = bad user
+    dns proxy = no
+    guest account = ghirosrv
+
+[upload]
+    comment = Ghiro Upload Share
+    browsable = yes
+    path = /home/ghirosrv/share
+    public = yes
+    writable = yes
+    read only = no
+    guest ok = yes
+    create mask = 0640
+    directory mask = 0750
+    force user = ghirosrv
+    force group = ghirosrv
+EOF
+
+# Restart.
+service samba restart
+
 
 
 
