@@ -34,6 +34,18 @@ ln -s /usr/bin/wkhtmltopdf.sh /usr/local/bin/wkhtmltopdf
 # Upgrade pip
 pip install --upgrade pip
 
+#
+# Configure ghiro service user.
+#
+useradd -c "Ghiro Service User" -d /home/ghirosrv -m -s /bin/bash/ ghirosrv
+mkdir /home/ghirosrv/share
+chown -R ghirosrv.ghirosrv /home/ghirosrv/share
+
+
+#
+# Setup Ghiro.
+#
+
 # Checkout ghiro from git.
 cd /var/www
 git clone https://github.com/Ghirensics/ghiro.git
@@ -118,7 +130,7 @@ UPDATE_CHECK = True
 # It is usually used to upload images via a shared folder or FTP.
 # It should be an absolute path.
 # Example: "/home/ghiro_share"
-AUTO_UPLOAD_DIR = "/tmp/ghiroshare"
+AUTO_UPLOAD_DIR = "/home/ghirosrv/share"
 # Delete a file after upload and submission.
 # The default behaviour is True.
 # WARNING: It is not suggested to set it to False, because you will re-submit images
@@ -179,7 +191,7 @@ cat <<EOF > /etc/apache2/sites-available/ghiro.conf
     <VirtualHost *:80>
         ServerAdmin webmaster@localhost
         WSGIProcessGroup ghiro
-        WSGIDaemonProcess ghiro processes=5 threads=10 user=nobody group=nogroup python-path=/var/www/ghiro/ home=/var/www/ghiro/ display-name=local
+        WSGIDaemonProcess ghiro processes=5 threads=10 user=ghirosrv group=ghirosrv python-path=/var/www/ghiro/ home=/var/www/ghiro/ display-name=local
         WSGIScriptAlias / /var/www/ghiro/ghiro/wsgi.py
         Alias /static/ /var/www/ghiro/static/
         <Location "/static/">
@@ -280,7 +292,7 @@ write_enable=NO
 seccomp_sandbox=NO
 xferlog_std_format=NO
 log_ftp_protocol=YES
-anon_root=/tmp/ghiroshare
+anon_root=/home/ghirosrv/share
 pasv_max_port=13000
 pasv_min_port=12000
 max_per_ip=200
