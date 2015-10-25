@@ -10,3 +10,6 @@ rm /var/lib/dhcp/*
 echo "cleaning up udev rules"
 rm -rf /dev/.udev/
 rm /lib/udev/rules.d/75-persistent-net-generator.rules
+
+# Add `sync` so Packer doesn't quit too early, before the large file is deleted.
+sync
