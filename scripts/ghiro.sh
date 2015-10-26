@@ -191,7 +191,7 @@ cat <<EOF > /etc/apache2/sites-available/ghiro.conf
     <VirtualHost *:80>
         ServerAdmin webmaster@localhost
         WSGIProcessGroup ghiro
-        WSGIDaemonProcess ghiro processes=5 threads=10 user=ghirosrv group=ghirosrv python-path=/var/www/ghiro/ home=/var/www/ghiro/ display-name=local
+        WSGIDaemonProcess ghiro processes=5 threads=10 user=ghirosrv group=ghirosrv python-path=/var/www/ghiro/ home=/var/www/ghiro/ display-name=ghiroweb
         WSGIScriptAlias / /var/www/ghiro/ghiro/wsgi.py
         Alias /static/ /var/www/ghiro/static/
         <Location "/static/">
