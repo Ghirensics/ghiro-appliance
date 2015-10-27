@@ -274,34 +274,73 @@ chmod +x /etc/network/if-up.d/ghirobanner
 #
 
 # Setup FTP server.
-apt-get install -y --no-install-recommends vsftpd
-
-# Prepare.
-mkdir -p /var/run/vsftpd/empty \
-&& mkdir -p /etc/vsftpd \
-&& mkdir -p /var/ftp \
-&& mv /etc/vsftpd.conf /etc/vsftpd.orig
+apt-get install -y --no-install-recommends proftpd-basic
 
 # Configure.
-cat <<EOF > /etc/vsftpd.conf
-listen=YES
-anonymous_enable=YES
-dirmessage_enable=YES
-use_localtime=YES
-connect_from_port_20=YES
-secure_chroot_dir=/var/run/vsftpd/empty
-write_enable=NO
-seccomp_sandbox=NO
-xferlog_std_format=NO
-log_ftp_protocol=YES
-anon_root=/home/ghirosrv/share
-pasv_max_port=13000
-pasv_min_port=12000
-max_per_ip=200
-max_login_fails=200
-max_clients=200
-anon_max_rate=0
-ftpd_banner="Welcome to Ghiro Appliance FTP"
+cat <<EOF > /etc/proftpd/proftpd.conf
+Include /etc/proftpd/modules.conf
+UseIPv6                         on
+IdentLookups                    off
+ServerName                      "ghiroappliance"
+ServerType                      standalone
+DeferWelcome                    off
+MultilineRFC2228                on
+DefaultServer                   on
+ShowSymlinks                    on
+TimeoutNoTransfer               600
+TimeoutStalled                  600
+TimeoutIdle                     1200
+DisplayLogin                    welcome.msg
+DisplayChdir                    .message true
+ListOptions                     "-l"
+DenyFilter                      \*.*/
+RequireValidShell               off
+Port                            21
+MaxInstances                    30
+User                            ghirosrv
+Group                           ghirosrv
+Umask                           022  022
+AllowOverwrite                  on
+TransferLog /var/log/proftpd/xferlog
+SystemLog   /var/log/proftpd/proftpd.log
+<IfModule mod_quotatab.c>
+QuotaEngine off
+</IfModule>
+<IfModule mod_ratio.c>
+Ratios off
+</IfModule>
+<IfModule mod_delay.c>
+DelayEngine on
+</IfModule>
+<IfModule mod_ctrls.c>
+ControlsEngine        off
+ControlsMaxClients    2
+ControlsLog           /var/log/proftpd/controls.log
+ControlsInterval      5
+ControlsSocket        /var/run/proftpd/proftpd.sock
+</IfModule>
+<IfModule mod_ctrls_admin.c>
+AdminControlsEngine off
+</IfModule>
+<Anonymous /home/ghirosrv/share>
+    User                          ghirosrv
+    Group                         ghirosrv
+    UserAlias                     anonymous ghirosrv
+    <Limit LOGIN>
+        Allow                       from all
+    </Limit>
+    GroupOwner                    ghirosrv
+    Umask                         006
+    HideUser                      root
+    AllowOverwrite on
+    <Limit LIST NLST  STOR STOU  APPE  RETR  RNFR RNTO  DELE  MKD XMKD SITE_MKDIR  RMD XRMD SITE_RMDIR  SITE  SITE_CHMOD  SITE_CHGRP  MTDM  PWD XPWD  SIZE  STAT  CWD XCWD  CDUP XCUP >
+        AllowAll
+    </Limit>
+    <Limit NOTHING >
+        DenyAll
+    </Limit>
+</Anonymous>
+Include /etc/proftpd/conf.d/
 EOF
 
 # Reboot.
