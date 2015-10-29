@@ -281,6 +281,7 @@ cat <<EOF > /etc/proftpd/proftpd.conf
 Include /etc/proftpd/modules.conf
 UseIPv6                         on
 IdentLookups                    off
+ServerIdent                     on "Welcome to Ghiro Appliance Upload FTP"
 ServerName                      "ghiroappliance"
 ServerType                      standalone
 DeferWelcome                    off
