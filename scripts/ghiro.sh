@@ -382,7 +382,3 @@ EOF
 
 # Restart.
 service samba restart
-
-
-
-
