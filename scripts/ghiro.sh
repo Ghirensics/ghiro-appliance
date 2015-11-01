@@ -49,6 +49,7 @@ chown -R ghirosrv.ghirosrv /home/ghirosrv/share
 # Checkout ghiro from git.
 cd /var/www
 git clone https://github.com/Ghirensics/ghiro.git
+chown -R ghirosrv.ghirosrv ghiro
 cd ghiro
 
 # Configure ghiro
