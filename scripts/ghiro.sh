@@ -175,7 +175,7 @@ apt-get install libmysqlclient-dev
 pip install MySQL-python
 
 # Ghiro setup.
-python manage.py syncdb --noinput
+python manage.py migrate
 
 # Create super user.
 echo "from users.models import Profile; Profile.objects.create_superuser('ghiro', 'yourmail@example.com', 'ghiromanager')" | python manage.py shell
