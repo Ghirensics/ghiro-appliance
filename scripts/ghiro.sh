@@ -23,7 +23,7 @@ apt-get install -y libtiff4-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms
 apt-get install -y apache2 libapache2-mod-wsgi
 
 # Deps for scipy.
-apt-get install -y libblas-dev liblapack-dev libatlas-base-dev gfortran python-dev python-numpy
+apt-get install -y libblas-dev liblapack-dev libatlas-base-dev gfortran python-dev python-numpy python-scipy
 
 # Install and configure wkhtmltopdf
 apt-get install -y wkhtmltopdf xvfb
