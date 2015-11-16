@@ -1,32 +1,9 @@
 #!/bin/bash
 
-# Setup mongo.
-apt-get -y install mongodb
-
-# Set Mysql password.
-debconf-set-selections <<< 'mysql-server mysql-server/root_password password ghiromanager'
-debconf-set-selections <<< 'mysql-server mysql-server/root_password_again password ghiromanager'
-
-# Setup Mysql.
-apt-get install -y mysql-server
-
 # Create ghiro db.
 mysqladmin --defaults-extra-file=/etc/mysql/debian.cnf create ghiro
 
-# Setup python stuff.
-apt-get install -y python-pip build-essential python-dev python-gi
-apt-get install -y libgexiv2-2 gir1.2-gexiv2-0.10
-# Pillow
-apt-get install -y libtiff4-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.5-dev tk8.5-dev python-tk libopenjpeg2 libopenjpeg-dev
-
-# Install Apache.
-apt-get install -y apache2 libapache2-mod-wsgi
-
-# Deps for scipy.
-apt-get install -y libblas-dev liblapack-dev libatlas-base-dev gfortran python-dev python-numpy python-scipy
-
 # Install and configure wkhtmltopdf
-apt-get install -y wkhtmltopdf xvfb
 printf '#!/bin/bash\nxvfb-run --server-args="-screen 0, 1024x768x24" /usr/bin/wkhtmltopdf $*' > /usr/bin/wkhtmltopdf.sh
 chmod a+x /usr/bin/wkhtmltopdf.sh
 ln -s /usr/bin/wkhtmltopdf.sh /usr/local/bin/wkhtmltopdf
@@ -171,7 +148,6 @@ EOF
 pip install -r requirements.txt
 
 # Additional Mysql driver.
-apt-get install libmysqlclient-dev
 pip install MySQL-python
 
 # Ghiro setup.
@@ -274,9 +250,6 @@ chmod +x /etc/network/if-up.d/ghirobanner
 # FTP Server.
 #
 
-# Setup FTP server.
-apt-get install -y --no-install-recommends proftpd-basic
-
 # Configure.
 cat <<EOF > /etc/proftpd/proftpd.conf
 Include /etc/proftpd/modules.conf
@@ -351,9 +324,6 @@ service vsftpd restart
 #
 # Samba server.
 #
-
-# Setup.
-apt-get install -yq samba
 
 # Create user with no password.
 smbpasswd -an ghirosrv
