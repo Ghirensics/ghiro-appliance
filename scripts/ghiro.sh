@@ -326,7 +326,7 @@ service vsftpd restart
 #
 
 # Create user with no password.
-smbpasswd -an ghirosrv
+smbpasswd -nsa ghirosrv
 
 # Configure.
 cat <<EOF > /etc/samba/smb.conf
@@ -352,4 +352,5 @@ cat <<EOF > /etc/samba/smb.conf
 EOF
 
 # Restart.
-service samba restart
+stop smbd
+start smbd
