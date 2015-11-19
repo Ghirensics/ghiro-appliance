@@ -319,7 +319,7 @@ Include /etc/proftpd/conf.d/
 EOF
 
 # Reboot.
-service vsftpd restart
+service proftpd restart
 
 #
 # Samba server.
