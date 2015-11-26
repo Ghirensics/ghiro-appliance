@@ -4,7 +4,7 @@ Ghiro Appliance Builder
 Ghiro appliance builder is a packer.io script to automagically create a Ghiro
 appliance ready to be used, based on Ubuntu.
 
-Using this script you should be able to create your onw Ghiro appliance updated
+Using this script you should be able to create your own Ghiro appliance updated
 to Ghiro's developed branch. You can easily customize the appliance building
 script to have your own customized appliance.
 
